@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Сброс стилей и Переменные --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-dark: #0a1118;       /* Глубокий полночный сине-черный */
+            --bg-light: #ffffff;      /* Кристально белый */
+            --bg-accent: #f5f8fa;     /* Светло-серый с каплей синего */
+            --text-main: #1e272e;     /* Почти черный для контраста */
+            --text-muted: #576574;    /* Стальной серый */
+            --color-accent: #34495e;  /* Приглушенный синий */
+            --border-color: #dcdde1;  /* Тонкие рамки */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Элегантные крупные заголовки */
+        h1, h2, h3, .card-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 100px 24px;
+            text-align: center;
+        }
+
+        .container-narrow {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            color: var(--text-main);
+        }
+
+        .section-title.text-light {
+            color: #ffffff;
+        }
+
+        /* --- Блок 1: Главный экран (Кинематографичный) --- */
+        .hero {
+            height: 100vh;
+            min-height: 650px;
+            /* Новая стильная свадебная фотография с глубоким контрастным затемнением */
+            background: linear-gradient(rgba(10, 17, 24, 0.55), rgba(10, 17, 24, 0.7)), 
+                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content {
+            animation: fadeIn slow 1.8s ease-out;
+        }
+
+        .hero-upper-title {
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .hero-names {
+            font-size: 4.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero-divider {
+            width: 40px;
+            height: 1px;
+            background-color: #ffffff;
+            margin: 25px auto;
+            opacity: 0.6;
+        }
+
+        .hero-date {
+            font-size: 1.6rem;
+            letter-spacing: 5px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 45px;
+        }
+
+        /* Кнопка на главном экране */
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 36px;
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #ffffff;
+            color: var(--bg-dark);
+        }
+
+        /* --- Блок 2: Текст благодарности --- */
+        .intro-section {
+            background-color: var(--bg-light);
+        }
+
+        .quote-block {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .quote-block p {
+            margin-bottom: 15px;
+        }
+
+        .intro-final {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        /* --- Блок 3: Тайминг (Темный стильный блок) --- */
+        .program-section {
+            background-color: var(--bg-dark);
+        }
+
+        .program-grid {
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .program-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 30px;
+            flex: 1;
+            min-width: 230px;
+            max-width: 260px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-time {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+
+        /* --- Блок 4: Детали (Сетка) --- */
+        .details-section {
+            background-color: var(--bg-accent);
+        }
+
+        .modern-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .modern-card {
+            background: #ffffff;
+            padding: 50px 40px;
+            text-align: left;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.02);
+        }
+
+        .modern-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        /* Полоски палитры */
+        .palette-container {
+            display: flex;
+            height: 15px;
+            margin-top: 25px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .color-bar { flex: 1; }
+        .bar-1 { background-color: #0B1D33; }
+        .bar-2 { background-color: #2B4360; }
+        .bar-3 { background-color: #748BA3; }
+        .bar-4 { background-color: #D3DFE8; }
+
+        /* --- Блок 5: Форма RSVP (Контрастная темная) --- */
+        .rsvp-dark-section {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+        }
+
+        .rsvp-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .modern-form {
+            margin-top: 50px;
+            text-align: left;
+        }
+
+        /* Современные инпуты с "плавающим" лейблом */
+        .input-group {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+            padding: 12px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group select option {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+        }
+
+        .input-group input:focus, 
+        .input-group select:focus {
+            border-bottom-color: #ffffff;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        /* Эффект поднятия текста вверх при клике */
+        .input-group input:focus ~ label,
+        .input-group input:not(:placeholder-shown) ~ label,
+        .input-group select:focus ~ label,
+        .input-group select:valid ~ label {
+            top: -15px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+
+        /* Кастомные радиокнопки */
+        .form-choice-group {
+            margin-bottom: 40px;
+        }
+
+        .choice-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .custom-radio {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            user-select: none;
+        }
+
+        .custom-radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-checkmark {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            height: 16px;
+            width: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+
+        .custom-radio:hover input ~ .radio-checkmark {
+            border-color: #ffffff;
+        }
+
+        .custom-radio input:checked ~ .radio-checkmark {
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        /* Кнопка отправки на форме */
+        .btn-accent {
+            width: 100%;
+            padding: 16px;
+            background-color: #ffffff;
+            color: var(--bg-dark);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-accent:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* --- Блок 6: Подвал --- */
+        .footer-minimal {
+            background-color: var(--bg-light);
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .footer-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            color: var(--text-main);
+        }
+
+        .footer-line {
+            width: 50px;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 20px auto;
+        }
+
+        .footer-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Анимации --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Мобильная адаптивность --- */
+        @media (max-width: 768px) {
+            .hero-names { font-size: 3rem; }
+            .section { padding: 70px 20px; }
+            .modern-grid { grid-template-columns: 1fr; gap: 25px; }
+            .program-card { max-width: 100%; }
+        }
+
+        /* ==========================================================================
+           ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (Экран до 768px)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            
+            /* --- Общие настройки и отступы --- */
+            body {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 50px 16px;
+            }
+
+            .section-title {
+                font-size: 1.8rem !important;
+                margin-bottom: 25px;
+            }
+
+            /* --- Главный экран (Hero) --- */
+            .hero {
+                min-height: 100vh;
+                padding: 16px;
+            }
+
+            .hero-names {
+                font-size: 2.4rem !important;
+                line-height: 1.2;
+                letter-spacing: 1px;
+            }
+
+            .hero-upper-title {
+                font-size: 0.75rem;
+                letter-spacing: 4px;
+                margin-bottom: 15px;
+            }
+
+            .hero-date {
+                font-size: 1.2rem !important;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+                padding: 8px 15px;
+            }
+
+            .btn, .btn-primary {
+                width: 100%;
+                max-width: 320px;
+                padding: 14px 20px;
+                box-sizing: border-box;
+            }
+
+            /* --- Блок 2: Благодарность --- */
+            .container-narrow {
+                padding: 0 8px;
+            }
+
+            .quote-block, .intro-text {
+                font-size: 1.15rem !important;
+                line-height: 1.6;
+            }
+
+            /* --- Тайминг (Карточки) --- */
+            .program-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .program-card {
+                max-width: 100% !important;
+                min-width: 100%;
+                padding: 30px 20px;
+            }
+
+            .card-time {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
+
+            /* --- Блоки деталей и Дресс-кода --- */
+            .details-grid, .modern-grid {
+                display: block !important;
+                grid-template-columns: 1fr !important;
+            }
+
+            .details-col, .modern-card {
+                display: block !important;
+                width: 100% !important;
+                padding: 30px 20px !important;
+                margin-bottom: 20px;
+                box-sizing: border-box;
+            }
+
+            .modern-card:last-child {
+                margin-bottom: 0;
+            }
+
+            /* --- Форма RSVP --- */
+            .rsvp-form, .modern-form {
+                padding: 30px 20px !important;
+                margin-top: 25px;
+            }
+
+            .input-group {
+                margin-bottom: 30px;
+            }
+
+            .custom-radio, .radio-option {
+                padding-top: 8px;
+                padding-bottom: 8px;
+                font-size: 1rem;
+            }
+
+            /* --- Футер --- */
+            .footer, .footer-minimal {
+                padding: 50px 16px;
+            }
+
+            .footer-text, .footer-headline {
+                font-size: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="hero-upper-title">SAVE THE DATE</p>
+            <h1 class="hero-names">ИМЯ & ИМЯ</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-date">25 . 09 . 2026</p>
+            <a href="#rsvp" class="btn-primary">Принять приглашение</a>
+        </div>
+    </header>
+
+    <section class="section intro-section">
+        <div class="container-narrow">
+            <h2 class="section-title">Дорогие наши и любимые!</h2>
+            <div class="quote-block">
+                <p>«В жизни каждого человека бывают моменты, которые меняют всё. Для нас таким моментом стало решение объединить наши судьбы.</p>
+                <p>Мы искренне благодарим вас за то, что вы всегда были рядом, поддерживали нас и делили с нами радость. Вы — самые близкие для нас люди, и именно поэтому в этот особенный день мы не представляем себя без вас.</p>
+            </div>
+            <p class="intro-final">С огромной радостью приглашаем вас на нашу свадьбу!»</p>
+        </div>
+    </section>
+
+    <section class="section program-section">
+        <h2 class="section-title text-light">Программа дня</h2>
+        <div class="program-grid">
+            
+            <div class="program-card">
+                <div class="card-time">15:30</div>
+                <h4 class="card-title">Welcome</h4>
+                <p class="card-desc">Сбор гостей, приветственный фуршет и легкая музыка</p>
+            </div>
+
+            <div class="program-card">
+                <div class="card-time">16:00</div>
+                <h4 class="card-title">Регистрация</h4>
+                <p class="card-desc">Торжественная выездная церемония начала нашей истории</p>
+            </div>
+
+            <div class="program-card">
+                <div class="card-time">17:00</div>
+                <h4 class="card-title">Банкет</h4>
+                <p class="card-desc">Ужин, искренние поздравления, теплые слова и танцы</p>
+            </div>
+
+            <div class="program-card">
+                <div class="card-time">21:30</div>
+                <h4 class="card-title">Торт & Финал</h4>
+                <p class="card-desc">Сладкий финал вечера под сиянием огней</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section details-section">
+        <h2 class="section-title">Важные детали</h2>
+        <div class="modern-grid">
+            
+            <div class="modern-card">
+                <h3>Дресс-код</h3>
+                <p>Мы будем очень благодарны, если при выборе праздничного образа вы отдадите предпочтение глубоким синим и благородным стальным оттенкам:</p>
+                <div class="palette-container">
+                    <div class="color-bar bar-1" title="#0B1D33"></div>
+                    <div class="color-bar bar-2" title="#2B4360"></div>
+                    <div class="color-bar bar-3" title="#748BA3"></div>
+                    <div class="color-bar bar-4" title="#D3DFE8"></div>
+                </div>
+            </div>
+
+            <div class="modern-card">
+                <h3>Пожелания</h3>
+                <p>Главное для нас — ваше присутствие! Пожалуйста, не дарите нам цветы: сразу после праздника мы отправляемся в свадебное путешествие. Вместо букетов мы будем рады вашей поддержке в виде конверта.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section rsvp-dark-section" id="rsvp">
+        <div class="container-narrow">
+            <h2 class="section-title text-light">Подтверждение присутствия</h2>
+            <p class="rsvp-subtitle">Пожалуйста, заполните форму ниже до 01.09.2026, чтобы мы могли учесть все детали.</p>
+            
+            <form class="modern-form" action="#" method="POST" onsubmit="alert('Ваш ответ успешно отправлен!'); return false;">
+                <div class="input-group">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label for="name">Ваше Имя и Фамилия</label>
+                </div>
+
+                <div class="form-choice-group">
+                    <p class="choice-label">Сможете ли вы быть с нами?</p>
+                    <label class="custom-radio">
+                        <input type="radio" name="attend" value="yes" checked>
+                        <span class="radio-checkmark"></span> Да, с удовольствием приду
+                    </label>
+                    <label class="custom-radio">
+                        <input type="radio" name="attend" value="no">
+                        <span class="radio-checkmark"></span> К сожалению, не смогу
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <select id="drinks" required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="wine">Вино</option>
+                        <option value="strong">Крепкие напитки</option>
+                        <option value="champagne">Шампанское</option>
+                        <option value="non-alc">Безалкогольные</option>
+                    </select>
+                    <label for="drinks">Предпочтения по алкоголю</label>
+                </div>
+
+                <button type="submit" class="btn-accent">Отправить форму</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer-minimal">
+        <p class="footer-headline">До встречи на празднике нашей любви</p>
+        <div class="footer-line"></div>
+        <p class="footer-sub">Связь по всем вопросам с координатором: +7 (999) 000-00-00</p>
+    </footer>
+
+</body>
+</html>
