@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         /* --- Базовые Стили и Переменные --- */
@@ -17,10 +17,9 @@
             --dark-emerald: #05261f;
             --deep-emerald: #031410;
             --text-light: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.75);
-            /* Фон из глубоких изумрудных тонов */
+            --text-muted: rgba(255, 255, 255, 0.7);
             --bg-gradient: linear-gradient(180deg, #062b22 0%, #041e18 50%, #02120e 100%); 
-            --card-bg: rgba(255, 255, 255, 0.06);
+            --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.12);
             --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -37,7 +36,6 @@
             background: var(--bg-gradient);
             color: var(--text-light);
             overflow-x: hidden;
-            /* Защита от авто-изменения цветов в некоторых браузерах */
             -webkit-text-size-adjust: 100%;
         }
 
@@ -55,9 +53,8 @@
 
         p {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 300; /* Не жирный */
-            font-style: italic; /* Курсив */
-            line-height: 1.8;
+            font-weight: 300; /* Обычный тонкий текст, без курсива */
+            line-height: 1.7;
             color: var(--text-muted);
             font-size: clamp(0.95rem, 1vw + 0.5rem, 1.05rem);
         }
@@ -74,7 +71,7 @@
             transform: translateY(0);
         }
 
-        /* --- Первый экран (Точно по фото-референсу) --- */
+        /* --- Первый экран (Строго по макету) --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -86,24 +83,25 @@
             overflow: hidden;
         }
 
+        /* Исправлено на правильное имя файла для GitHub */
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%; 
-            background-image: url('фон.jpg');
+            background-image: url('bg.jpg'); 
             background-size: cover;
             background-position: center;
             z-index: -1;
         }
 
-        /* Затемнение для идеальной читаемости */
+        /* Затемнение оверлея */
         .hero-bg::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(3, 20, 16, 0.3) 0%, rgba(4, 30, 24, 0.75) 100%);
+            background: linear-gradient(180deg, rgba(3, 20, 16, 0.25) 0%, rgba(4, 30, 24, 0.7) 100%);
         }
 
         .hero-content {
@@ -113,7 +111,7 @@
             max-width: 650px;
         }
 
-        /* Вензель монограммы M and E */
+        /* Монограмма M and E */
         .monogram {
             display: flex;
             justify-content: center;
@@ -127,7 +125,7 @@
             font-weight: 300;
             color: #ffffff;
             line-height: 1;
-            font-family: 'Times New Roman', serif; /* Для утонченного стиля засечек */
+            font-family: 'Times New Roman', serif;
         }
 
         .monogram .letter-e {
@@ -158,7 +156,6 @@
         .hero-desc {
             font-size: clamp(0.95rem, 2.5vw, 1.3rem);
             font-weight: 300;
-            font-style: normal;
             color: var(--text-muted);
             margin-bottom: 2rem;
         }
@@ -171,7 +168,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Блок даты со линиями из макета */
+        /* Линии даты */
         .hero-date-row {
             display: flex;
             justify-content: center;
@@ -218,7 +215,7 @@
             opacity: 0.7;
         }
 
-        /* --- Основной контент --- */
+        /* --- Контентная зона --- */
         .main-content {
             background: var(--bg-gradient);
             position: relative;
@@ -232,14 +229,14 @@
             text-align: center;
         }
 
-        /* Заголовок со стильным изумрудным свечением */
+        /* Мягкое изумрудное неоновое свечение */
         .section-title {
             font-size: clamp(1.6rem, 3vw + 0.4rem, 2.3rem);
             color: #ffffff;
             margin-bottom: 3rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(11, 64, 52, 0.6), 0 0 30px rgba(11, 64, 52, 0.4);
+            text-shadow: 0 0 15px rgba(11, 64, 52, 0.7), 0 0 30px rgba(11, 64, 52, 0.4);
         }
 
         .premium-card {
@@ -282,17 +279,15 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            font-weight: 400;
         }
 
-        /* --- Секция: Идеальный Тайминг (Не съезжает на мобильных) --- */
+        /* --- Секция: Стабильный Тайминг (Без съездов) --- */
         .timeline {
             position: relative;
             max-width: 750px;
             margin: 0 auto;
         }
 
-        /* Вертикальная направляющая линия */
         .timeline::before {
             content: '';
             position: absolute;
@@ -300,13 +295,13 @@
             top: 15px;
             bottom: 15px;
             width: 1px;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .timeline-item {
             display: grid;
-            grid-template-columns: 90px 50px 1fr; /* Стабильная сетка без прыжков */
-            align-items: center; /* Центрирование контента относительно времени */
+            grid-template-columns: 90px 50px 1fr;
+            align-items: center;
             margin-bottom: 2.2rem;
             position: relative;
         }
@@ -352,8 +347,8 @@
         }
 
         .timeline-card:hover {
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .timeline-title {
@@ -365,10 +360,10 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- Секция: Дресс-код (Фиксированный ряд без съездов) --- */
+        /* --- Секция: Жесткая сетка для Дресс-кода (Всегда в ряд) --- */
         .color-palette {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Строго 3 колонки в ряд на всех экранах */
+            grid-template-columns: repeat(3, 1fr) !important; /* Принудительно 3 колонки в ряд */
             gap: 1rem;
             max-width: 450px;
             margin: 2.5rem auto 0 auto;
@@ -382,8 +377,8 @@
         }
 
         .color-circle {
-            width: clamp(60px, 12vw, 80px);
-            height: clamp(60px, 12vw, 80px);
+            width: clamp(55px, 12vw, 80px);
+            height: clamp(55px, 12vw, 80px);
             border-radius: 50%;
             margin-bottom: 0.8rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
@@ -392,22 +387,42 @@
         }
 
         .color-circle-wrapper:hover .color-circle {
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
-        /* Гарантируем чистоту белого и черного цветов на всех девайсах */
+        .color-black { background-color: #111111 !important; }
         .color-emerald { background-color: #0b4034 !important; }
         .color-white { background-color: #ffffff !important; }
-        .color-black { background-color: #111111 !important; }
 
         .color-name {
             font-size: 0.8rem;
-            color: #ffffff;
+            color: #ffffff !important;
             letter-spacing: 1px;
             font-weight: 300;
         }
 
-        /* --- Форма подтверждения --- */
+        /* --- Стилизация блока Пожеланий (Montserrat разной толщины) --- */
+        .wishes-highlight {
+            font-weight: 500; /* Более плотный заголовок внутри карточки */
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        .wishes-body {
+            font-weight: 300; /* Стандартный легкий вес */
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.2rem;
+        }
+
+        .wishes-accent {
+            font-weight: 200; /* Самый легкий, воздушный вес для акцента на цветы */
+            color: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.2rem;
+        }
+
+        /* --- Форма RSVP --- */
         .rsvp-form {
             display: flex;
             flex-direction: column;
@@ -536,13 +551,13 @@
             60% { transform: translateY(-3px); }
         }
 
-        /* --- Пожизненная адаптивность таймлайна для узких экранов --- */
+        /* --- Мобильная адаптация таймлайна --- */
         @media (max-width: 500px) {
             .timeline::before {
                 left: 15px;
             }
             .timeline-item {
-                grid-template-columns: 1fr; /* Перестраиваем структуру на узких экранах, сохраняя идеальное выравнивание */
+                grid-template-columns: 1fr;
                 gap: 0.4rem;
                 align-items: start;
             }
@@ -634,7 +649,7 @@
         <section class="reveal">
             <h2 class="section-title">Дресс-код</h2>
             <div class="premium-card">
-                <p>Будем благодарны, если вы поддержите цветовую гамму нашего праздника.</p>
+                <p style="margin-bottom: 1.5rem; font-weight: 300;">Будем благодарны, если вы поддержите цветовую гамму нашего праздника.</p>
                 <div class="color-palette">
                     <div class="color-circle-wrapper">
                         <div class="color-circle color-black"></div>
@@ -655,9 +670,9 @@
         <section class="reveal">
             <h2 class="section-title">Пожелания</h2>
             <div class="premium-card">
-                <p style="margin-bottom: 1rem; color: #ffffff; font-weight: 500; font-style: normal;">Самым главным подарком для нас станет ваше присутствие.</p>
-                <p>Если вы захотите сделать подарок, мы будем рады любому вашему вниманию.</p>
-                <p style="margin-top: 1rem; color: #ffffff; font-weight: 400;">Просим не дарить цветы — вместо них можно подарить хорошее настроение.</p>
+                <p class="wishes-highlight">Самым главным подарком для нас станет ваше присутствие.</p>
+                <p class="wishes-body">Если вы захотите сделать подарок, мы будем рады любому вашему вниманию.</p>
+                <p class="wishes-accent">Просим не дарить цветы — вместо них можно подарить хорошее настроение.</p>
             </div>
         </section>
 
@@ -706,7 +721,7 @@
                         <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
                     <h3 style="font-size: 1.8rem; color: #ffffff; margin-bottom: 0.5rem; font-weight: 400;">Спасибо!</h3>
-                    <p style="font-style: normal;">Ваш ответ успешно сохранен.</p>
+                    <p>Ваш ответ успешно сохранен.</p>
                 </div>
 
             </div>
@@ -715,10 +730,8 @@
     </div>
 
     <script>
-        // Дата свадьбы
         const weddingDate = new Date('2026-09-04T12:00:00').getTime();
 
-        // Массив тайминга дня
         const timelineData = [
             { 
                 time: '12:00', 
@@ -766,7 +779,6 @@
             });
         }
 
-        // Рендер стабильного таймлайна
         function renderTimeline() {
             const container = document.getElementById('weddingTimeline');
             container.innerHTML = timelineData.map(item => `
