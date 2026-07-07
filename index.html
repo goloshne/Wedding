@@ -3,67 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark">
-    <title>Приглашение на свадьбу Михаила и Екатерины</title>
+    <title>Приглашение на свадьбу</title>
+    <!-- Иконка во вкладке браузера (Emoji вместо файла) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-
     <style>
-        /* --- Базовые Стили --- */
+        /* --- Базовые Стили (Осветленный изумрудный градиент) --- */
         :root {
             --primary-emerald: #0b4034;
-            --dark-emerald: #05261f;
-            --deep-emerald: #031410;
+            --dark-emerald: #0c4d3f; 
+            --deep-emerald: #063329; 
             --text-light: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.7);
-            --bg-gradient: linear-gradient(180deg, #062b22 0%, #041e18 50%, #02120e 100%); 
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.12);
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --text-muted: rgba(255, 255, 255, 0.75);
+            --bg-gradient: linear-gradient(180deg, #093d31 0%, #062e25 50%, #04211a 100%); 
+            --card-bg: rgba(255, 255, 255, 0.08); 
+            --card-border: rgba(255, 255, 255, 0.15);
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-family: 'Montserrat', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-light);
-            overflow-x: hidden;
-            -webkit-text-size-adjust: 100%;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            min-height: 100vh;
             background: var(--bg-gradient);
+            color: var(--text-light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        p {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            line-height: 1.7;
-            color: var(--text-muted);
-            font-size: clamp(0.95rem, 1vw + 0.5rem, 1.05rem);
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: var(--transition-smooth);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-                /* --- Идеальный первый экран --- */
+        /* --- Первый экран с 3D Параллаксом --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -73,260 +45,160 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            perspective: 1px;
         }
 
         .hero-bg {
             position: absolute;
             inset: 0;
-            /* Объединяем градиент-затемнение и картинку в одно свойство layer за layer */
             background-image: 
-                linear-gradient(180deg, rgba(3, 20, 16, 0.3) 0%, rgba(4, 30, 24, 0.85) 100%), 
+                linear-gradient(180deg, rgba(3, 20, 16, 0.2) 0%, rgba(6, 46, 37, 0.85) 100%), 
                 url('https://i.pinimg.com/originals/95/a7/9a/95a79a196f5308c0e6f88e17a936177a.jpg?nii=t');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            z-index: 1; /* Переносим на слой, который точно не перекроет текст */
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        /* Мягкий переход от первого экрана к контенту */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15vh;
+            background: linear-gradient(to bottom, transparent, #093d31);
+            z-index: 2;
         }
 
         .hero-content {
             padding: 2rem;
-            z-index: 2;
+            z-index: 3;
             width: 100%;
             max-width: 650px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            will-change: transform, opacity;
         }
 
-        /* Геометрия монограммы БЕЗ накладывания на М */
-        .monogram {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        .monogram .letter {
-            font-family: 'Times New Roman', serif;
-            font-size: clamp(6.5rem, 15vw, 8.5rem);
-            font-weight: 300;
-            color: #ffffff;
-            line-height: 1;
-        }
-
-        .monogram .letter-m {
-            align-self: flex-start; /* M выше */
-            margin-bottom: 40px;
-        }
-
-        .monogram .letter-e {
-            align-self: flex-end; /* E ниже */
-            margin-top: 40px;
-        }
-
-        .monogram .and {
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            font-size: clamp(1.8rem, 4vw, 2.3rem);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 0 10px;
-            align-self: center;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(0.85rem, 2vw, 1.05rem);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 0.8rem;
-            font-weight: 400;
-            color: #ffffff;
-        }
-
-        .hero-desc {
-            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-            font-weight: 300;
-            color: var(--text-muted);
-            margin-bottom: 3.5rem;
-        }
-
-        .hero-month {
-            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            font-weight: 400;
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        /* Ровный блок даты без палочек */
-        .hero-date-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.25);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 0.8rem 0;
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto;
-        }
-
-        .hero-date-side {
-            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 300;
-            opacity: 0.85;
-            width: 110px; /* Фиксирует ширину боковин для идеального баланса */
         }
 
-        .hero-date-side.left {
-            text-align: right;
-            padding-right: 1.5rem;
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
         }
 
-        .hero-date-side.right {
-            text-align: left;
-            padding-left: 1.5rem;
-        }
-
-        .hero-date-main {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: 300;
-            line-height: 1;
-            color: #ffffff;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .scroll-down svg {
-            width: 28px;
-            height: 28px;
-            fill: none;
-            stroke: #ffffff;
-            stroke-width: 1.5;
-            animation: bounce 2s infinite;
-            opacity: 0.7;
-        }
-
-        /* --- Контентная зона --- */
+        /* --- Контентные секции --- */
         .main-content {
-            background: var(--bg-gradient);
             position: relative;
-            z-index: 3;
+            z-index: 4;
+            padding: 4rem 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         section {
-            padding: clamp(4rem, 8vw, 6.5rem) 1.5rem;
-            max-width: 900px;
-            margin: 0 auto;
+            margin-bottom: 6rem;
             text-align: center;
         }
 
         .section-title {
-            font-size: clamp(1.5rem, 3vw + 0.4rem, 2.1rem);
-            color: #ffffff;
-            margin-bottom: 3rem;
+            font-size: 2rem;
+            margin-bottom: 2rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(11, 64, 52, 0.7);
+            letter-spacing: 1px;
+            color: var(--text-light);
         }
 
-        .premium-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: clamp(1.8rem, 5vw, 3.5rem);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+        /* Плавное проявление блоков при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         /* --- Таймер --- */
         .timer-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .timer-block {
-            background: rgba(0, 0, 0, 0.25);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 1.5rem 0.5rem;
-            border-radius: 12px;
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 70px;
+            backdrop-filter: blur(5px);
         }
 
         .timer-val {
-            font-size: clamp(1.8rem, 4.5vw, 3rem);
-            color: #ffffff;
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.4rem;
-            font-weight: 400;
+            font-size: 1.8rem;
+            font-weight: bold;
         }
 
-        .timer-label {
-            font-size: clamp(0.65rem, 1.2vw, 0.75rem);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .timer-lbl {
+            font-size: 0.75rem;
             color: var(--text-muted);
+            text-transform: uppercase;
         }
 
-        /* --- Тайминг с поддержкой карт --- */
+        /* --- Стилизация Статического Таймлайна --- */
         .timeline {
             position: relative;
-            max-width: 750px;
+            max-width: 500px;
             margin: 0 auto;
+            padding-left: 2rem;
+            text-align: left;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 115px; 
-            top: 15px;
-            bottom: 15px;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.2);
+            left: 7px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--card-border);
         }
 
         .timeline-item {
-            display: grid;
-            grid-template-columns: 90px 50px 1fr;
-            align-items: center;
-            margin-bottom: 2.2rem;
             position: relative;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
+            margin-bottom: 2.5rem;
         }
 
         .timeline-time {
-            font-size: clamp(1.6rem, 4vw, 2.3rem);
+            font-weight: bold;
             color: #ffffff;
-            font-weight: 400;
-            line-height: 1;
-            text-align: right;
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
         }
 
         .timeline-dot-container {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 16px;
+            height: 16px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100%;
-            z-index: 2;
+            justify-content: center;
         }
 
         .timeline-dot {
@@ -334,501 +206,126 @@
             height: 10px;
             border-radius: 50%;
             background: #ffffff;
-            border: 2px solid #041e18;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
         .timeline-card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
-            padding: 1.5rem 2rem;
-            border-radius: 14px;
-            text-align: left;
-            transition: var(--transition-smooth);
-        }
-
-        .timeline-card:hover {
-            border-color: rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.07);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
         }
 
         .timeline-title {
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            font-weight: 500;
-            color: #ffffff;
-            margin-bottom: 0.3rem;
+            font-weight: 600;
             text-transform: uppercase;
+            font-size: 0.9rem;
             letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
         .map-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            color: var(--text-muted);
+            gap: 0.5rem;
+            color: #ffffff;
             text-decoration: none;
-            margin-top: 0.4rem;
-            font-size: 0.9rem;
-            transition: var(--transition-smooth);
-            border-bottom: 1px dashed rgba(255,255,255,0.3);
-            padding-bottom: 1px;
+            transition: opacity 0.2s;
         }
 
         .map-link:hover {
-            color: #ffffff;
-            border-color: #ffffff;
+            opacity: 0.8;
         }
 
         .map-link svg {
-            width: 13px;
-            height: 13px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-
-        /* --- Дресс-код --- */
-        .color-palette {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 1rem;
-            max-width: 450px;
-            margin: 2.5rem auto 0 auto;
-        }
-
-        .color-circle-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .color-circle {
-            width: clamp(55px, 12vw, 80px);
-            height: clamp(55px, 12vw, 80px);
-            border-radius: 50%;
-            margin-bottom: 0.8rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .color-black { background-color: #111111 !important; }
-        .color-emerald { background-color: #0b4034 !important; }
-        .color-white { background-color: #ffffff !important; }
-
-        .color-name {
-            font-size: 0.8rem;
-            color: #ffffff !important;
-            letter-spacing: 1px;
-            font-weight: 300;
-        }
-
-        /* --- Пожелания --- */
-        .wishes-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .wishes-primary {
-            font-weight: 500;
-            color: #ffffff;
-            font-size: clamp(1.05rem, 1vw + 0.6rem, 1.2rem);
-        }
-        
-        .wishes-secondary {
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .wishes-accent-line {
-            font-weight: 200;
-            color: rgba(255, 255, 255, 0.75);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 1.5rem;
-        }
-
-        /* --- Анкета Гостя --- */
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.8rem;
-            max-width: 520px;
-            margin: 1.5rem auto 0 auto;
-            text-align: left;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .form-label-main {
-            font-size: 1rem;
-            color: #ffffff;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .form-label-sub {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            margin-top: -0.2rem;
-        }
-
-        .form-input {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            padding: 1.1rem;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition-smooth);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: rgba(255,255,255,0.5);
-            background: rgba(0, 0, 0, 0.45);
-        }
-
-        .radio-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            margin-top: 0.2rem;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            cursor: pointer;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(0, 0, 0, 0.15);
-            padding: 0.9rem 1.1rem;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: var(--transition-smooth);
-        }
-
-        .radio-label:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .radio-label input {
-            display: none;
-        }
-
-        .custom-radio {
-            width: 20px;
-            height: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
             flex-shrink: 0;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .radio-label input:checked + .custom-radio {
-            border-color: #ffffff;
-        }
-
-        .radio-label input:checked + .custom-radio::after {
-            content: '';
-            position: absolute;
-            inset: 5px;
-            background-color: #ffffff;
-            border-radius: 50%;
-        }
-
-        .custom-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 4px;
-            display: inline-block;
-            position: relative;
-            flex-shrink: 0;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .radio-label input:checked + .custom-checkbox {
-            border-color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .radio-label input:checked + .custom-checkbox::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .submit-btn {
-            background: transparent;
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            padding: 1.2rem;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            margin-top: 1rem;
-            font-weight: 500;
-        }
-
-        .submit-btn:hover {
-            background: #ffffff;
-            color: var(--dark-emerald);
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        .success-message svg {
-            width: 45px;
-            height: 45px;
-            stroke: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        /* --- Анимации --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-6px); }
-            60% { transform: translateY(-3px); }
-        }
-
-        /* --- Адаптив --- */
-        @media (max-width: 500px) {
-            .monogram {
-                max-width: 320px;
-                gap: 5px;
-            }
-            .monogram .letter {
-                font-size: clamp(5.2rem, 13vw, 6.5rem);
-            }
-            .monogram .letter-m { margin-bottom: 25px; }
-            .monogram .letter-e { margin-top: 25px; }
-
-            .timeline::before {
-                left: 15px;
-            }
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: 0.4rem;
-                align-items: start;
-            }
-            .timeline-time {
-                text-align: left;
-                padding-left: 2.2rem;
-                font-size: 1.8rem;
-            }
-            .timeline-dot-container {
-                position: absolute;
-                left: 0;
-                top: 10px;
-                height: auto;
-            }
-            .timeline-card {
-                margin-left: 2.2rem;
-                padding: 1.2rem 1.4rem;
-            }
-            .timer-container {
-                gap: 0.5rem;
-            }
-            .timer-block {
-                padding: 1rem 0.2rem;
-            }
-            .hero-date-side {
-                width: auto;
-            }
-            .hero-date-side.left { padding-right: 0.8rem; }
-            .hero-date-side.right { padding-left: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <main class="hero">
+    <!-- Первый Экран с эффектами -->
+    <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="monogram">
-                <span class="letter letter-m">M</span>
-                <span class="and">and</span>
-                <span class="letter letter-e">E</span>
-            </div>
-            <div class="hero-subtitle">Приглашаем вас на нашу свадьбу</div>
-            <div class="hero-desc">Разделите с нами радость этого особенного дня!</div>
-            
-            <div class="hero-month">Сентябрь</div>
-            <div class="hero-date-row">
-                <div class="hero-date-side left">пятница</div>
-                <div class="hero-date-main">04</div>
-                <div class="hero-date-side right">2026</div>
-            </div>
+            <h1>Александр & Мария</h1>
+            <p>Приглашаем на нашу свадьбу</p>
         </div>
-        <div class="scroll-down" onclick="scrollToMain()">
-            <svg viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
-    </main>
+    </div>
 
-    <div class="main-content" id="mainContent">
+    <!-- Основной Контент -->
+    <div class="main-content">
 
+        <!-- Секция: Таймер -->
         <section class="reveal">
-            <h2 class="section-title" id="timerTitle">До свадьбы осталось</h2>
+            <h2 class="section-title">До свадьбы осталось</h2>
             <div class="timer-container">
-                <div class="timer-block">
-                    <span class="timer-val" id="days">00</span>
-                    <span class="timer-label">дней</span>
-                </div>
-                <div class="timer-block">
-                    <span class="timer-val" id="hours">00</span>
-                    <span class="timer-label">часов</span>
-                </div>
-                <div class="timer-block">
-                    <span class="timer-val" id="minutes">00</span>
-                    <span class="timer-label">минут</span>
-                </div>
-                <div class="timer-block">
-                    <span class="timer-val" id="seconds">00</span>
-                    <span class="timer-label">секунд</span>
-                </div>
+                <div class="timer-block"><div class="timer-val" id="days">00</div><div class="timer-lbl">дн</div></div>
+                <div class="timer-block"><div class="timer-val" id="hours">00</div><div class="timer-lbl">ч</div></div>
+                <div class="timer-block"><div class="timer-val" id="minutes">00</div><div class="timer-lbl">мин</div></div>
+                <div class="timer-block"><div class="timer-val" id="seconds">00</div><div class="timer-lbl">сек</div></div>
             </div>
         </section>
 
+        <!-- Секция: Тайминг (Исправленный статический HTML) -->
         <section class="reveal">
             <h2 class="section-title">Тайминг дня</h2>
             <div class="timeline" id="weddingTimeline">
-                </div>
-        </section>
-
-        <section class="reveal">
-            <h2 class="section-title">Дресс-код</h2>
-            <div class="premium-card">
-                <p style="margin-bottom: 1.5rem; font-weight: 300;">Будем благодарны, если вы поддержите цветовую гамму нашего праздника.</p>
-                <div class="color-palette">
-                    <div class="color-circle-wrapper">
-                        <div class="color-circle color-black"></div>
-                        <span class="color-name">Черный</span>
-                    </div>
-                    <div class="color-circle-wrapper">
-                        <div class="color-circle color-emerald"></div>
-                        <span class="color-name">Изумрудный</span>
-                    </div>
-                    <div class="color-circle-wrapper">
-                        <div class="color-circle color-white"></div>
-                        <span class="color-name">Белый</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal">
-            <h2 class="section-title">Пожелания</h2>
-            <div class="premium-card">
-                <div class="wishes-container">
-                    <p class="wishes-primary">Самым главным подарком для нас станет ваше присутствие.</p>
-                    <p class="wishes-secondary">Если вы захотите сделать подарок, мы будем рады любому вашему вниманию.</p>
-                    <p class="wishes-accent-line">Просим не дарить цветы — вместо них можно подарить хорошее настроение.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal" style="padding-bottom: 7rem;">
-            <h2 class="section-title">Анкета гостя</h2>
-            <div class="premium-card">
-                <p style="margin-bottom: 2rem; font-weight: 300; max-width: 550px; margin-left: auto; margin-right: auto;">
-                    Мы будем рады, если Вы подтвердите свое присутствие. Ваш ответ поможет нам при организации торжества:
-                </p>
                 
-                <form class="rsvp-form" id="rsvpForm" onsubmit="handleFormSubmit(event)">
-                    
-                    <div class="form-group">
-                        <label class="form-label-main">Ваше присутствие на торжестве?</label>
-                        <div class="radio-stack">
-                            <label class="radio-label">
-                                <input type="radio" name="attendance" value="Да, с удовольствием приду!" checked>
-                                <span class="custom-radio"></span>
-                                <span>Да, с удовольствием приду!</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="attendance" value="Да, буду со своей половинкой.">
-                                <span class="custom-radio"></span>
-                                <span>Да, буду со своей половинкой.</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="attendance" value="К сожалению, не смогу присутствовать.">
-                                <span class="custom-radio"></span>
-                                <span>К сожалению, не смогу присутствовать.</span>
-                            </label>
+                <!-- 1. Свадебная речь -->
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00</div>
+                    <div class="timeline-dot-container">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-title">СВАДЕБНАЯ РЕЧЬ</div>
+                        <div class="timeline-desc">ZOOM-конференция</div>
+                    </div>
+                </div>
+
+                <!-- 2. ЗАГС -->
+                <div class="timeline-item">
+                    <div class="timeline-time">15:00</div>
+                    <div class="timeline-dot-container">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-title">РЕГИСТРАЦИЯ БРАКА</div>
+                        <div class="timeline-desc">
+                            <a href="https://yandex.ru/maps/?text=ЗАГС+Саянск+мкр+Юбилейный+65" target="_blank" class="map-link" title="Открыть карту">
+                                <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                                <span>ЗАГС г. Саянск, мкр. Юбилейный, д.65</span>
+                            </a>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="guestName" class="form-label-main">Ваше имя и фамилия</label>
-                        <label for="guestName" class="form-label-sub">если вы будете с парой или семьей, то внесите все имена</label>
-                        <input type="text" id="guestName" class="form-input" required placeholder="Введите имена и фамилии">
+                <!-- 3. Банкет -->
+                <div class="timeline-item">
+                    <div class="timeline-time">17:00</div>
+                    <div class="timeline-dot-container">
+                        <div class="timeline-dot"></div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label-main">Что предпочитаете из напитков?</label>
-                        <div class="radio-stack">
-                            <label class="radio-label">
-                                <input type="checkbox" name="drinks" value="Вино">
-                                <span class="custom-checkbox"></span>
-                                <span>Вино</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="checkbox" name="drinks" value="Виски">
-                                <span class="custom-checkbox"></span>
-                                <span>Виски</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="checkbox" name="drinks" value="Коньяк">
-                                <span class="custom-checkbox"></span>
-                                <span>Коньяк</span>
-                            </label>
+                    <div class="timeline-card">
+                        <div class="timeline-title">СВАДЕБНЫЙ БАНКЕТ</div>
+                        <div class="timeline-desc">
+                            <a href="https://yandex.ru/maps/?text=Банкетный+Зал+Отрадное+Кимильтей+Набережная+52а" target="_blank" class="map-link" title="Открыть карту">
+                                <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                                <span>Банкетный Зал «Отрадное»<br>с. Кимильтей, ул. Набережная, 52а</span>
+                            </a>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="submit-btn">Отправить</button>
-                </form>
-
-                <div class="success-message" id="successMessage">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    <h3 style="font-size: 1.8rem; color: #ffffff; margin-bottom: 0.5rem; font-weight: 400;">Спасибо!</h3>
-                    <p>Ваша анкета успешно отправлена.</p>
                 </div>
 
             </div>
@@ -837,102 +334,19 @@
     </div>
 
     <script>
-        // Дата свадьбы
-        const weddingDate = new Date('2026-09-04T12:00:00').getTime();
+        // --- Настройка обратного отсчета ---
+        const targetDate = new Date('September 12, 2026 15:00:00').getTime();
 
-        // Данные таймлайна с прямыми ссылками на Яндекс Карты
-        const timelineData = [
-            { 
-                time: '12:00', 
-                title: 'СВАДЕБНАЯ РЕЧЬ', 
-                description: 'ZOOM-конференция',
-                mapUrl: '' 
-            },
-            { 
-                time: '15:00', 
-                title: 'РЕГИСТРАЦИЯ БРАКА', 
-                description: 'ЗАГС г. Саянск, мкр. Юбилейный, д.65',
-                mapUrl: 'https://yandex.ru/maps/?text=ЗАГС+Саянск+мкр+Юбилейный+65'
-            },
-            { 
-                time: '17:00', 
-                title: 'СВАДЕБНЫЙ БАНКЕТ', 
-                description: 'Банкетный Зал «Отрадное»<br>с. Кимильтей, ул. Набережная, 52а',
-                mapUrl: 'https://yandex.ru/maps/?text=Банкетный+Зал+Отрадное+Кимильтей+Набережная+52а'
-            }
-        ];
-
-        async function sendForm(data) {
-            console.log("Данные анкеты:", data);
-            return true; 
-        }
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = document.getElementById('rsvpForm');
-            const submitBtn = form.querySelector('.submit-btn');
-            submitBtn.innerText = "Отправка...";
-            submitBtn.disabled = true;
-
-            const selectedDrinks = [];
-            document.querySelectorAll('input[name="drinks"]:checked').forEach(cb => {
-                selectedDrinks.push(cb.value);
-            });
-
-            const data = {
-                attendance: document.querySelector('input[name="attendance"]:checked').value,
-                guestName: document.getElementById('guestName').value,
-                drinks: selectedDrinks
-            };
-
-            sendForm(data).then(() => {
-                form.style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
-            }).catch(() => {
-                alert("Ошибка.");
-                submitBtn.innerText = "Отправить";
-                submitBtn.disabled = false;
-            });
-        }
-
-        function renderTimeline() {
-            const container = document.getElementById('weddingTimeline');
-            container.innerHTML = timelineData.map(item => {
-                let descContent = item.description;
-                if (item.mapUrl) {
-                    descContent = `
-                        <a href="${item.mapUrl}" target="_blank" class="map-link" title="Открыть карту">
-                            <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
-                            <span>${item.description}</span>
-                        </a>
-                    `;
-                }
-                return `
-                    <div class="timeline-item">
-                        <div class="timeline-time">${item.time}</div>
-                        <div class="timeline-dot-container">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-card">
-                            <div class="timeline-title">${item.title}</div>
-                            <div class="timeline-desc">${descContent}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Таймер считает НАЗАД до даты свадьбы, и ВПЕРЕД после наступления даты
         function updateTimer() {
             const now = new Date().getTime();
-            let distance = weddingDate - now;
-            const titleEl = document.getElementById('timerTitle');
+            const distance = targetDate - now;
 
             if (distance < 0) {
-                titleEl.innerText = "Мы в браке...";
-                distance = Math.abs(distance); 
-            } else {
-                titleEl.innerText = "До свадьбы осталось";
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
             }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -946,25 +360,37 @@
             document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
         }
 
-        function initEffects() {
+        // --- Плавное проявление блоков при скролле ---
+        function initRevealEffects() {
+            const reveals = document.querySelectorAll('.reveal');
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if(entry.isIntersecting) entry.target.classList.add('active');
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
                 });
-            }, { threshold: 0.02 });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            reveals.forEach(reveal => observer.observe(reveal));
         }
 
-        function scrollToMain() {
-            document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
-        }
+        // --- Интерактивный микро-параллакс для текста заголовка ---
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const heroContent = document.querySelector('.hero-content');
+            
+            if (heroContent && scrolled <= window.innerHeight) {
+                heroContent.style.transform = `translateY(${scrolled * 0.25}px) scale(${1 - scrolled / 2200})`;
+                heroContent.style.opacity = `${1 - scrolled / (window.innerHeight * 0.75)}`;
+            }
+        });
 
+        // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', () => {
-            renderTimeline();
-            initEffects();
             updateTimer();
             setInterval(updateTimer, 1000);
+            initRevealEffects();
         });
     </script>
 </body>
