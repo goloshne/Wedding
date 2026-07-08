@@ -62,15 +62,15 @@
             will-change: transform;
         }
 
-        /* Интерактивная вертикальная линия слева — теперь едва заметная */
+        /* Контейнер для правого бегающего блика (линия полностью скрыта) */
         .scroll-line-container {
             position: fixed;
             top: 0;
-            left: 45px;
-            width: 1px;
+            right: 2px; /* Перенесли на самый правый край */
+            width: 2px;
             height: 100vh;
-            background: rgba(255, 255, 255, 0.05); /* Уменьшили видимость */
-            z-index: 1;
+            background: transparent; /* Сделали саму линию невидимой */
+            z-index: 100;
             pointer-events: none;
         }
 
@@ -78,10 +78,10 @@
             position: absolute;
             top: -150px;
             left: 0;
-            width: 1px;
-            height: 180px;
-            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8), transparent);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            width: 2px;
+            height: 120px; /* Сделали блик чуть аккуратнее */
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.85), transparent);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
             will-change: transform;
         }
 
@@ -674,7 +674,7 @@
             margin-bottom: 1rem;
         }
 
-        /* --- Подвал — теперь строго на всю ширину экрана --- */
+        /* --- Обновленный аккуратный подвал --- */
         .wedding-footer {
             width: 100vw;
             position: relative;
@@ -683,9 +683,9 @@
             margin-left: -50vw;
             margin-right: -50vw;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 4rem 1.5rem;
+            padding: 2.2rem 1.5rem; /* Сделали уже */
             text-align: center;
-            background: rgba(0, 0, 0, 0.55); /* Фон сделан более ярким и контрастным */
+            background: rgba(0, 0, 0, 0.55);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-sizing: border-box;
@@ -693,9 +693,9 @@
 
         .footer-text {
             font-family: 'Monsieur La Doulaise', cursive;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem); /* Слегка уменьшили размер */
             color: rgba(255, 255, 255, 0.95);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         @keyframes fadeIn {
@@ -709,16 +709,7 @@
             60% { transform: translateY(-3px); }
         }
 
-        @media (max-width: 768px) {
-            .scroll-line-container {
-                left: 30px;
-            }
-        }
-
         @media (max-width: 500px) {
-            .scroll-line-container {
-                left: 20px; 
-            }
             .timeline::before { display: none; } 
             .timeline-item {
                 grid-template-columns: 1fr;
@@ -836,7 +827,7 @@
             <div class="premium-card">
                 <div class="wishes-container">
                     <p class="wishes-text wishes-highlight">Самым главным подарком для нас станет ваше присутствие в этот день.</p>
-                    <p class="wishes-text">Если вы захотите поздравить нас подарком, самым удобным и желанным вариантом для нашей молодой семьи будет подарок в конверте. Это поможет нам осуществить наши общие мечты и избежать лишних хлопот с перевозкой и хранением крупных вещей.</p>
+                    <p class="wishes-text">Если вы захотесь поздравить нас подарком, самым удобным и желанным вариантом для нашей молодой семьи будет подарок в конверте. Это поможет нам осуществить наши общие мечты и избежать лишних хлопот с перевозкой и хранением крупных вещей.</p>
                     <p class="wishes-text">Просим не дарить цветы — вместо них мы будем рады бутылочке вашего любимого напитка, которая станет частью нашего семейного праздника и создаст приятные воспоминания.</p>
                     <p class="wishes-text wishes-highlight" style="margin-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem;">Главное для нас — разделить этот счастливый день вместе с вами!</p>
                 </div>
@@ -927,8 +918,9 @@
     </div>
 
     <script>
+        // Твой токен и чат (скрипт автоматически преобразует инвайт-ссылку в нужный формат запроса)
         const TELEGRAM_BOT_TOKEN = '8749864570:AAGNX5Bfdh4Lkdv2d6KTWGvkE7guGmovBZs';
-        const TELEGRAM_CHAT_ID = '389360676'; 
+        const TELEGRAM_CHAT_ID = '@_qkHzar4SMMwMGUy'; 
 
         const weddingDate = new Date('2026-09-04T15:00:00').getTime();
 
@@ -1107,7 +1099,7 @@
             const flare = document.getElementById('scrollFlare');
             if (flare && docHeight > 0) {
                 const scrollPercent = scrollTop / docHeight;
-                const flareY = scrollPercent * (windowHeight + 300) - 150;
+                const flareY = scrollPercent * (windowHeight + 200) - 100;
                 flare.style.transform = `translateY(${flareY}px)`;
             }
         }
