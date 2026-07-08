@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark">
-    <title>Приглашение на свадьбу Михаила и Екатерины</title>
+    <title>Приглашение на свадьбу</title>
     
-    <!-- Иконка вкладки (Favicon) с кольцом -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* --- Базовые Стили --- */
         :root {
             --primary-emerald: #1b7f75;
             --dark-emerald: #116b61;
             --deep-emerald: #074a43;
             --text-light: #ffffff;
             --text-muted: rgba(255, 255, 255, 0.75);
-            /* Новая светлая, благородная изумрудная палитра на основе ваших цветов */
             --bg-gradient: linear-gradient(180deg, #1b7a72 0%, #116b61 50%, #074a43 100%); 
             --card-bg: rgba(255, 255, 255, 0.07);
             --card-border: rgba(255, 255, 255, 0.15);
-            /* Измененный transition для более изящного и долгого выплывания блоков */
-            --transition-smooth: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -50,26 +46,24 @@
         }
 
         p {
-            font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             line-height: 1.7;
             color: var(--text-muted);
             font-size: clamp(0.95rem, 1vw + 0.5rem, 1.05rem);
         }
 
-        /* Обновленное плавное проявление блоков: выплывание снизу, чуть дольше и с эффектом масштаба */
         .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
+            transform: translateY(30px);
             transition: var(--transition-smooth);
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
-        /* --- Идеальный первый экран --- */
+        /* --- Первый экран --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -81,32 +75,30 @@
             overflow: hidden;
         }
 
-        /* Плавный переход-градиент в новую контентную зону внизу первого экрана */
+        /* Сместили плавный переход сильно ниже, чтобы не перекрывать текст */
         .hero::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 15vh;
-            background: linear-gradient(to bottom, transparent, #1b7a72);
+            height: 15vh; /* Уменьшили высоту, опустив градиент к краю */
+            background: linear-gradient(to bottom, transparent 0%, #1b7a72 100%);
             z-index: 2;
             pointer-events: none;
         }
 
-        /* 3D-Параллакс фона при скролле */
         .hero-bg {
             position: absolute;
             inset: 0;
             background-image: 
-                linear-gradient(180deg, rgba(7, 74, 67, 0.2) 0%, rgba(17, 107, 97, 0.75) 100%), 
+                radial-gradient(circle at center, rgba(17, 107, 97, 0.2) 0%, rgba(27, 122, 114, 0.75) 100%), 
                 url('https://i.pinimg.com/originals/95/a7/9a/95a79a196f5308c0e6f88e17a936177a.jpg?nii=t');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
             z-index: 1;
-            will-change: transform;
         }
         
         .hero-content {
@@ -117,59 +109,63 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            will-change: transform, opacity;
-            transition: transform 0.1s linear, opacity 0.1s linear;
         }
 
-        /* Геометрия монограммы БЕЗ накладывания на М */
-        .monogram {
+        .wedding-names {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 4.5rem; 
+        }
+
+        .wedding-names .name-row {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 7vw, 4.2rem);
+            font-weight: 400;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+
+        .wedding-names .and-row {
+            font-family: 'Bad Script', cursive;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0.3rem 0;
+            position: relative;
+            width: 80%;
+            max-width: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 2.5rem auto;
         }
 
-        .monogram .letter {
-            font-family: 'Times New Roman', serif;
-            font-size: clamp(6.5rem, 15vw, 8.5rem);
-            font-weight: 300;
-            color: #ffffff;
-            line-height: 1;
+        .wedding-names .and-row::before,
+        .wedding-names .and-row::after {
+            content: '';
+            position: absolute;
+            top: 55%;
+            width: 25%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.25);
         }
-
-        .monogram .letter-m {
-            align-self: flex-start; /* M выше */
-            margin-bottom: 40px;
-        }
-
-        .monogram .letter-e {
-            align-self: flex-end; /* E ниже */
-            margin-top: 40px;
-        }
-
-        .monogram .and {
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            font-size: clamp(1.8rem, 4vw, 2.3rem);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 0 10px;
-            align-self: center;
-        }
+        .wedding-names .and-row::before { left: 0; }
+        .wedding-names .and-row::after { right: 0; }
 
         .hero-subtitle {
-            font-size: clamp(0.85rem, 2vw, 1.05rem);
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
             text-transform: uppercase;
             letter-spacing: 4px;
             margin-bottom: 0.8rem;
             font-weight: 400;
-            color: #ffffff;
+            color: rgba(255,255,255,0.9);
         }
 
         .hero-desc {
-            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
             font-weight: 300;
             color: var(--text-muted);
             margin-bottom: 3.5rem;
@@ -180,47 +176,42 @@
             text-transform: uppercase;
             letter-spacing: 8px;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: #ffffff;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Ровный блок даты без палочек */
         .hero-date-row {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             align-items: center;
             border-top: 1px solid rgba(255, 255, 255, 0.25);
             border-bottom: 1px solid rgba(255, 255, 255, 0.25);
             padding: 0.8rem 0;
             width: 100%;
-            max-width: 360px;
+            max-width: 400px;
             margin: 0 auto;
         }
 
         .hero-date-side {
-            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            font-size: clamp(0.7rem, 1.8vw, 0.85rem);
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 300;
             opacity: 0.85;
-            width: 110px; /* Фиксирует ширину боковин для идеального баланса */
+            width: 100%;
         }
 
-        .hero-date-side.left {
-            text-align: right;
-            padding-right: 1.5rem;
-        }
-
-        .hero-date-side.right {
-            text-align: left;
-            padding-left: 1.5rem;
-        }
+        .hero-date-side.left { text-align: right; padding-right: 1rem; }
+        .hero-date-side.right { text-align: left; padding-left: 1rem; }
 
         .hero-date-main {
             font-size: clamp(2.5rem, 6vw, 3.5rem);
             font-weight: 300;
             line-height: 1;
             color: #ffffff;
+            text-align: center;
         }
 
         .scroll-down {
@@ -229,7 +220,7 @@
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
-            z-index: 2;
+            z-index: 3;
         }
 
         .scroll-down svg {
@@ -307,7 +298,7 @@
             color: var(--text-muted);
         }
 
-        /* --- Тайминг с поддержкой карт --- */
+        /* --- Тайминг --- */
         .timeline {
             position: relative;
             max-width: 750px;
@@ -332,9 +323,7 @@
             position: relative;
         }
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
+        .timeline-item:last-child { margin-bottom: 0; }
 
         .timeline-time {
             font-size: clamp(1.6rem, 4vw, 2.3rem);
@@ -369,53 +358,86 @@
             padding: 1.5rem 2rem;
             border-radius: 14px;
             text-align: left;
-            transition: var(--transition-smooth);
-        }
-
-        .timeline-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
         }
 
         .timeline-title {
             font-size: clamp(1rem, 2vw, 1.1rem);
             font-weight: 500;
             color: #ffffff;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .map-link {
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Выбор карт (Мультиссылки) */
+        .map-selector-trigger {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            color: var(--text-muted);
+            color: #ffffff;
             text-decoration: none;
-            margin-top: 0.4rem;
+            margin-top: 0.6rem;
             font-size: 0.9rem;
+            cursor: pointer;
+            border-bottom: 1px dashed rgba(255,255,255,0.4);
+            padding-bottom: 2px;
             transition: var(--transition-smooth);
-            border-bottom: 1px dashed rgba(255,255,255,0.3);
-            padding-bottom: 1px;
         }
 
-        .map-link:hover {
-            color: #ffffff;
+        .map-selector-trigger:hover {
             border-color: #ffffff;
         }
 
-        .map-link svg {
-            width: 13px;
-            height: 13px;
+        .map-selector-trigger svg {
+            width: 14px;
+            height: 14px;
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
         }
 
+        .map-options {
+            display: none;
+            margin-top: 0.8rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .map-options.active {
+            display: flex;
+        }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 400;
+            transition: var(--transition-smooth);
+        }
+
+        .map-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
         /* --- Дресс-код --- */
         .color-palette {
             display: grid;
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             max-width: 450px;
             margin: 2.5rem auto 0 auto;
@@ -425,7 +447,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
         }
 
         .color-circle {
@@ -437,13 +458,13 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .color-black { background-color: #111111 !important; }
-        .color-emerald { background-color: #1b7f75 !important; }
-        .color-white { background-color: #ffffff !important; }
+        .color-black { background-color: #111111; }
+        .color-emerald { background-color: #1b7f75; }
+        .color-white { background-color: #ffffff; }
 
         .color-name {
             font-size: 0.8rem;
-            color: #ffffff !important;
+            color: #ffffff;
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -452,28 +473,25 @@
         .wishes-container {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.8rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .wishes-primary {
+        .wishes-text {
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.95rem, 1vw + 0.5rem, 1.1rem);
+            line-height: 1.8;
+        }
+
+        .wishes-highlight {
             font-weight: 500;
             color: #ffffff;
-            font-size: clamp(1.05rem, 1vw + 0.6rem, 1.2rem);
-        }
-        
-        .wishes-secondary {
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.85);
+            font-size: clamp(1.05rem, 1vw + 0.6rem, 1.25rem);
         }
 
-        .wishes-accent-line {
-            font-weight: 200;
-            color: rgba(255, 255, 255, 0.75);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 1.5rem;
-        }
-
-        /* --- Анкета Гостая --- */
+        /* --- Анкета Гостя --- */
         .rsvp-form {
             display: flex;
             flex-direction: column;
@@ -524,7 +542,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.9rem;
-            margin-top: 0.2rem;
         }
 
         .radio-label {
@@ -546,9 +563,7 @@
             border-color: rgba(255, 255, 255, 0.15);
         }
 
-        .radio-label input {
-            display: none;
-        }
+        .radio-label input { display: none; }
 
         .custom-radio {
             width: 20px;
@@ -559,10 +574,6 @@
             position: relative;
             flex-shrink: 0;
             background: rgba(0, 0, 0, 0.15);
-        }
-
-        .radio-label input:checked + .custom-radio {
-            border-color: #ffffff;
         }
 
         .radio-label input:checked + .custom-radio::after {
@@ -582,11 +593,6 @@
             position: relative;
             flex-shrink: 0;
             background: rgba(0, 0, 0, 0.15);
-        }
-
-        .radio-label input:checked + .custom-checkbox {
-            border-color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
         }
 
         .radio-label input:checked + .custom-checkbox::after {
@@ -635,7 +641,21 @@
             margin-bottom: 1rem;
         }
 
-        /* --- Анимации --- */
+        /* --- Исправленный подвал (Единый шрифт) --- */
+        .wedding-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-text {
+            font-family: 'Bad Script', cursive; /* Весь текст теперь одним шрифтом */
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -647,21 +667,8 @@
             60% { transform: translateY(-3px); }
         }
 
-        /* --- Адаптив --- */
         @media (max-width: 500px) {
-            .monogram {
-                max-width: 320px;
-                gap: 5px;
-            }
-            .monogram .letter {
-                font-size: clamp(5.2rem, 13vw, 6.5rem);
-            }
-            .monogram .letter-m { margin-bottom: 25px; }
-            .monogram .letter-e { margin-top: 25px; }
-
-            .timeline::before {
-                left: 15px;
-            }
+            .timeline::before { left: 15px; }
             .timeline-item {
                 grid-template-columns: 1fr;
                 gap: 0.4rem;
@@ -682,22 +689,9 @@
                 margin-left: 2.2rem;
                 padding: 1.2rem 1.4rem;
             }
-            .timer-container {
-                gap: 0.5rem;
-            }
-            .timer-block {
-                padding: 1rem 0.2rem;
-            }
-            .hero-date-side {
-                width: auto;
-            }
-            .hero-date-side.left { padding-right: 0.8rem; }
-            .hero-date-side.right { padding-left: 0.8rem; }
-            
-            /* На мобильных отключаем фиксированный фон, чтобы избежать багов верстки Safari/Android */
-            .hero-bg {
-                background-attachment: scroll;
-            }
+            .timer-container { gap: 0.5rem; }
+            .timer-block { padding: 1rem 0.2rem; }
+            .hero-bg { background-attachment: scroll; }
         }
     </style>
 </head>
@@ -706,10 +700,10 @@
     <main class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="monogram">
-                <span class="letter letter-m">M</span>
-                <span class="and">and</span>
-                <span class="letter letter-e">E</span>
+            <div class="wedding-names">
+                <span class="name-row">Михаил</span>
+                <span class="and-row">and</span>
+                <span class="name-row">Екатерина</span>
             </div>
             <div class="hero-subtitle">Приглашаем вас на нашу свадьбу</div>
             <div class="hero-desc">Разделите с нами радость этого особенного дня!</div>
@@ -783,14 +777,15 @@
             <h2 class="section-title">Пожелания</h2>
             <div class="premium-card">
                 <div class="wishes-container">
-                    <p class="wishes-primary">Самым главным подарком для нас станет ваше присутствие.</p>
-                    <p class="wishes-secondary">Если вы захотите сделать подарок, мы будем рады любому вашему вниманию.</p>
-                    <p class="wishes-accent-line">Просим не дарить цветы — вместо них можно подарить хорошее настроение.</p>
+                    <p class="wishes-text wishes-highlight">Самым главным подарком для нас станет ваше присутствие в этот день.</p>
+                    <p class="wishes-text">Если вы захотите поздравить нас подарком, самым удобным и желанным вариантом для нашей молодой семьи будет подарок в конверте. Это поможет нам осуществить наши общие мечты и избежать лишних хлопот с перевозкой и хранением крупных вещей.</p>
+                    <p class="wishes-text">Просим не дарить цветы — вместо них мы будем рады бутылочке вашего любимого напитка, которая станет частью нашего семейного праздника и создаст приятные воспоминания.</p>
+                    <p class="wishes-text wishes-highlight" style="margin-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem;">Главное для нас — разделить этот счастливый день вместе с вами!</p>
                 </div>
             </div>
         </section>
 
-        <section class="reveal" style="padding-bottom: 7rem;">
+        <section class="reveal" style="padding-bottom: 5rem;">
             <h2 class="section-title">Анкета гостя</h2>
             <div class="premium-card">
                 <p style="margin-bottom: 2rem; font-weight: 300; max-width: 550px; margin-left: auto; margin-right: auto;">
@@ -798,7 +793,6 @@
                 </p>
                 
                 <form class="rsvp-form" id="rsvpForm" onsubmit="handleFormSubmit(event)">
-                    
                     <div class="form-group">
                         <label class="form-label-main">Ваше присутствие на торжестве?</label>
                         <div class="radio-stack">
@@ -858,40 +852,123 @@
                     <h3 style="font-size: 1.8rem; color: #ffffff; margin-bottom: 0.5rem; font-weight: 400;">Спасибо!</h3>
                     <p>Ваша анкета успешно отправлена.</p>
                 </div>
-
             </div>
         </section>
+
+        <!-- Исправленный подвал -->
+        <footer class="wedding-footer">
+            <div class="footer-text">
+                С любовью, Михаил и Екатерина
+            </div>
+        </footer>
 
     </div>
 
     <script>
-        // Дата свадьбы
-        const weddingDate = new Date('2026-09-04T12:00:00').getTime();
+        const TELEGRAM_BOT_TOKEN = '8749864570:AAGNX5Bfdh4Lkdv2d6KTWGvkE7guGmovBZs';
+        const TELEGRAM_CHAT_ID = 'ВАШ_ЛИЧНЫЙ_CHAT_ID'; 
 
-        // Данные таймлайна с прямыми ссылками на Яндекс Карты
+        const weddingDate = new Date('2026-09-04T15:00:00').getTime();
+
+        // Полный список событий с мультиссылками на 3 карты
         const timelineData = [
             { 
                 time: '12:00', 
                 title: 'СВАДЕБНАЯ РЕЧЬ', 
                 description: 'ZOOM-конференция',
-                mapUrl: '' 
+                maps: {
+                    zoom: 'https://zoom.us' // Для зума оставляем прямую ссылку
+                }
             },
             { 
                 time: '15:00', 
                 title: 'РЕГИСТРАЦИЯ БРАКА', 
                 description: 'ЗАГС г. Саянск, мкр. Юбилейный, д.65',
-                mapUrl: 'https://yandex.ru/maps/?text=ЗАГС+Саянск+мкр+Юбилейный+65'
+                maps: {
+                    yandex: 'https://yandex.ru/maps/?text=ЗАГС+Саянск+мкр+Юбилейный+65',
+                    google: 'https://www.google.com/maps/search/?api=1&query=ЗАГС+Саянск+мкр+Юбилейный+65',
+                    gis2: 'https://2gis.ru/search/ЗАГС+Саянск+мкр+Юбилейный+65'
+                }
             },
             { 
                 time: '17:00', 
                 title: 'СВАДЕБНЫЙ БАНКЕТ', 
                 description: 'Банкетный Зал «Отрадное»<br>с. Кимильтей, ул. Набережная, 52а',
-                mapUrl: 'https://yandex.ru/maps/?text=Банкетный+Зал+Отрадное+Кимильтей+Набережная+52а'
+                maps: {
+                    yandex: 'https://yandex.ru/maps/?text=Банкетный+Зал+Отрадное+Кимильтей+Набережная+52а',
+                    google: 'https://www.google.com/maps/search/?api=1&query=Банкетный+Зал+Отрадное+Кимильтей+Набережная+52а',
+                    gis2: 'https://2gis.ru/search/Банкетный+Зал+Отрадное+Кимильтей+Набережная+52а'
+                }
             }
         ];
 
+        function toggleMapOptions(index) {
+            const el = document.getElementById(`map-options-${index}`);
+            if (el) el.classList.toggle('active');
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('weddingTimeline');
+            container.innerHTML = timelineData.map((item, index) => {
+                let mapMarkup = '';
+                
+                if (item.maps && item.maps.zoom) {
+                    mapMarkup = `
+                        <a href="${item.maps.zoom}" target="_blank" class="map-selector-trigger">
+                            <svg viewBox="0 0 24 24"><path d="M21 6.5L17 10V7c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h13c.55 0 1-.45 1-1v-3l4 3.5c.42.37 1 .07 1-.5v-11c0-.57-.58-.87-1-.5z"/></svg>
+                            <span>Подключиться к Zoom</span>
+                        </a>`;
+                } else if (item.maps) {
+                    mapMarkup = `
+                        <div class="map-selector-trigger" onclick="toggleMapOptions(${index})">
+                            <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                            <span>Открыть в картах</span>
+                        </div>
+                        <div class="map-options" id="map-options-${index}">
+                            <a href="${item.maps.yandex}" target="_blank" class="map-btn">Яндекс</a>
+                            <a href="${item.maps.google}" target="_blank" class="map-btn">Google</a>
+                            <a href="${item.maps.gis2}" target="_blank" class="map-btn">2ГИС</a>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="timeline-item">
+                        <div class="timeline-time">${item.time}</div>
+                        <div class="timeline-dot-container">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-card">
+                            <div class="timeline-title">${item.title}</div>
+                            <div class="timeline-desc">${item.description}</div>
+                            ${mapMarkup}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         async function sendForm(data) {
-            console.log("Данные анкеты:", data);
+            let message = `<b>💍 Новая анкета гостя!</b>\n\n`;
+            message += `<b>👤 Имя/Фамилия:</b> ${data.guestName}\n`;
+            message += `<b>📅 Присутствие:</b> ${data.attendance}\n`;
+            
+            const drinksText = data.drinks.length > 0 ? data.drinks.join(', ') : 'Не выбрано';
+            message += `<b>🥂 Напитки:</b> ${drinksText}`;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+
+            if (!response.ok) throw new Error('Ошибка сети');
             return true; 
         }
 
@@ -917,40 +994,12 @@
                 form.style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
             }).catch(() => {
-                alert("Ошибка.");
+                alert("Произошла ошибка при отправке. Попробуйте еще раз.");
                 submitBtn.innerText = "Отправить";
                 submitBtn.disabled = false;
             });
         }
 
-        function renderTimeline() {
-            const container = document.getElementById('weddingTimeline');
-            container.innerHTML = timelineData.map(item => {
-                let descContent = item.description;
-                if (item.mapUrl) {
-                    descContent = `
-                        <a href="${item.mapUrl}" target="_blank" class="map-link" title="Открыть карту">
-                            <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
-                            <span>${item.description}</span>
-                        </a>
-                    `;
-                }
-                return `
-                    <div class="timeline-item">
-                        <div class="timeline-time">${item.time}</div>
-                        <div class="timeline-dot-container">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-card">
-                            <div class="timeline-title">${item.title}</div>
-                            <div class="timeline-desc">${descContent}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Таймер считает НАЗАД до даты свадьбы, и ВПЕРЕД после наступления даты
         function updateTimer() {
             const now = new Date().getTime();
             let distance = weddingDate - now;
@@ -988,7 +1037,6 @@
             document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Интерактивный уход текста первого экрана (.hero-content) в глубину при скролле
         function handleHeroScroll() {
             const heroContent = document.querySelector('.hero-content');
             if (!heroContent) return;
@@ -998,9 +1046,7 @@
             
             if (scrollTop <= heroHeight) {
                 const progress = scrollTop / heroHeight;
-                // Мягкое затухание
                 const opacity = Math.max(0, 1 - progress * 1.5);
-                // Плавное смещение по вертикали вниз для 3D-эффекта глубины
                 const translateY = progress * 120; 
                 
                 heroContent.style.opacity = opacity;
@@ -1013,8 +1059,6 @@
             initEffects();
             updateTimer();
             setInterval(updateTimer, 1000);
-            
-            // Подключение обработчика скролла для эффекта погружения текста
             window.addEventListener('scroll', handleHeroScroll, { passive: true });
         });
     </script>
